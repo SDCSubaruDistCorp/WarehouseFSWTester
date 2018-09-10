@@ -1,0 +1,166 @@
+﻿
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>View</h2>
+
+<style>
+    /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+    #map {
+        height: 100%;
+    }
+    /* Optional: Makes the sample page fill the window. */
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    #floating-panelMap1 {
+        position: relative;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+    }
+
+    #floating-panelMap1 {
+        background-color: #fff;
+        border: 1px solid #999;
+        left: 25%;
+        padding: 5px;
+        position: relative;
+        top: 10px;
+        z-index: 5;
+    }
+</style>
+
+<div id="floating-panelMap1">
+    <button onclick="getSale()">find Sale</button>
+</div>
+
+<div id="floating-panelMap1">
+    <button onclick="updateSale()">update Sale</button>
+</div>
+
+<div id="SaleIdDIV">
+    <span class="bold left-align" id="SaleId" name="SaleId"></span>
+</div>
+<div id="addressDIV">
+    <span class="bold left-align" id="CostumerAddress" name="CostumerAddress"></span>
+</div>
+<div id="latDIV">
+    <span class="bold left-align" id="lat" name="lat"></span>
+</div>
+<div id="lngDIV">
+    <span class="bold left-align" id="lng" name="lng"></span>
+</div>
+
+<script>
+
+    // This example requires the Visualization library. Include the libraries=visualization
+    // parameter when you first load the API. For example:
+    // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=visualization">
+
+    var map, heatmap;
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 13,
+            center: { lat: 37.775, lng: -122.434 },
+            mapTypeId: 'satellite'
+        });
+
+        heatmap = new google.maps.visualization.HeatmapLayer({
+            data: getPoints(),
+            map: map
+        });
+    }
+
+
+    var lat1;
+    var lng1;
+
+
+
+    // Heatmap data: 500 Points
+    function updateSale(sale) {
+
+        var CostumerAddress = $("#CostumerAddress").html();
+
+        alert(CostumerAddress);
+        
+       
+        var geocoder;
+        var geometry1;
+
+        geocoder = new google.maps.Geocoder();
+
+        var _saleId = $("#SaleId").html();
+        var _lat;// = $("#lat").html();
+        var _lng;// = $("#lng").html();
+
+        geocoder.geocode({ 'address': CostumerAddress }, function (results, status) {
+            if (status == 'OK') {
+                $("#lat").append(results[0].geometry.location.lat());
+                _lat = results[0].geometry.location.lat();
+                $("#lng").append( results[0].geometry.location.lng() );
+                position: results[0].geometry.location
+                _lng = results[0].geometry.location.lng();
+                alert(results[0].geometry.location.lng());
+                alert(_lng + 'll');
+            }
+        });
+
+        var _urlForHeader = '@Url.Action("UpdateCoordinate", "Sales")';
+        $.ajax({
+            url: _urlForHeader,
+            data: { saleId: _saleId, lat: _lat, lng: _lng },
+            method: 'GET',
+            success: function (data) {
+                alert('ok')
+            }
+        });
+    }
+
+
+
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnKZUWx1ZDBJ9sBpok1RWrbLApND8S-D8&libraries=visualization&callback=initMap">
+</script>
+
+<script>
+
+    function getSale() {
+        var _urlForHeader = '@Url.Action("GetSales", "Sales")';
+        $.ajax({
+            url: _urlForHeader,
+            //data: { dealerCode: SaleId },
+            method: 'GET',
+            success: function (data) {
+                if (data.Result) {
+                    if (data.Result.SaleId != null) {
+                        $("#SaleId").append(data.Result.SaleId);
+                    }
+                    if (data.Result.CostumerAddress != null) {
+                        $("#CostumerAddress").append(data.Result.CostumerAddress);
+                    }
+
+                    //alert(data.Result.SaleId);
+                    //getAddressLatlng(data);
+                }
+            },
+            error: function (data) {
+            }
+        });
+    }
+</script>

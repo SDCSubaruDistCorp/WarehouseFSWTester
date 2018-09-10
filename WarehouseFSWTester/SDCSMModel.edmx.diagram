@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cd2900f7eccb461d9c5acfb7f73a1eba" Name="Diagram1">
+        <EntityTypeShape EntityType="SDCManagementSystem_Test3Model.WareHouseReceipt" Width="1.5" PointX="1" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDCManagementSystem_Test3Model.DWT_Dealers" Width="1.5" PointX="1" PointY="4.25" />
+        <EntityTypeShape EntityType="SDCManagementSystem_Test3Model.CrossSellZip" Width="1.5" PointX="5.125" PointY="0.5" />
+        <EntityTypeShape EntityType="SDCManagementSystem_Test3Model.RetailComparison" Width="1.5" PointX="6.75" PointY="0.5" />
+        <EntityTypeShape EntityType="SDCManagementSystem_Test3Model.AORDealerHistory" Width="1.5" PointX="10.75" PointY="0.5" />
+        <EntityTypeShape EntityType="SDCManagementSystem_Test3Model.CrossSellDealerAOR" Width="1.5" PointX="12.375" PointY="0.5" />
+        <EntityTypeShape EntityType="SDCManagementSystem_Test3Model.AOR" Width="1.5" PointX="9.125" PointY="0.5" />
+        <EntityTypeShape EntityType="SDCManagementSystem_Test3Model.AORzipCode" Width="1.5" PointX="14" PointY="0.5" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

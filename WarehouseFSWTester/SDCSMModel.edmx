@@ -1,0 +1,498 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SDCManagementSystem_Test3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AOR">
+          <Key>
+            <PropertyRef Name="AORId" />
+          </Key>
+          <Property Name="AORId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Dealer_IdResponsable" Type="int" Nullable="false" />
+          <Property Name="AORName" Type="varchar" MaxLength="100" />
+          <Property Name="CurrentPopulation" Type="int" />
+          <Property Name="5YrsProyectedPopulation" Type="int" />
+          <Property Name="CurrentHouseholds" Type="int" />
+          <Property Name="5YrsProyectedHouseholds" Type="int" />
+          <Property Name="CurrentHouseholdsUnder50" Type="int" />
+          <Property Name="5YrsProyectedHouseholdsUnder50" Type="int" />
+          <Property Name="CurrentHouseholds50to100" Type="int" />
+          <Property Name="5YrsProyectedHouseholds50to100" Type="int" />
+          <Property Name="CurrentHouseholdsOver100" Type="int" />
+          <Property Name="5YrsProyectedHouseholdsOver100" Type="int" />
+        </EntityType>
+        <EntityType Name="AORDealerHistory">
+          <Key>
+            <PropertyRef Name="AORDealerHistoryid" />
+          </Key>
+          <Property Name="AORDealerHistoryid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AORName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DealerCode" Type="varchar" MaxLength="6" />
+          <Property Name="DealerName" Type="varchar" MaxLength="100" />
+          <Property Name="DealerCity" Type="varchar" MaxLength="100" />
+          <Property Name="ApptDate" Type="date" />
+          <Property Name="TermDate" Type="date" />
+        </EntityType>
+        <EntityType Name="AORzipCode">
+          <Key>
+            <PropertyRef Name="AORzipCode_id" />
+          </Key>
+          <Property Name="AORzipCode_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AORId" Type="int" Nullable="false" />
+          <Property Name="ZIPCode" Type="varchar" MaxLength="5" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CrossSellDealerAOR">
+          <Key>
+            <PropertyRef Name="CrossSellDealerAORid" />
+          </Key>
+          <Property Name="CrossSellDealerAORid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AORName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Dealer_id" Type="int" />
+          <Property Name="SalesFrom" Type="date" />
+          <Property Name="SalesThrough" Type="date" />
+          <Property Name="TotalSales" Type="int" />
+          <Property Name="DealerCode" Type="varchar" MaxLength="6" />
+          <Property Name="DealerName" Type="varchar" MaxLength="100" />
+          <Property Name="DealerCity" Type="varchar" MaxLength="100" />
+          <Property Name="DealerSaler" Type="int" />
+          <Property Name="pctAORSales" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="CrossSellZip">
+          <Key>
+            <PropertyRef Name="CrossSellZip_id" />
+          </Key>
+          <Property Name="CrossSellZip_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dealer_id" Type="int" Nullable="false" />
+          <Property Name="SalesFrom" Type="date" Nullable="false" />
+          <Property Name="SalesThrough" Type="date" Nullable="false" />
+          <Property Name="SalesinZIP" Type="int" />
+          <Property Name="pctTotalSales" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ZIP" Type="varchar" MaxLength="5" />
+          <Property Name="ZIPName" Type="nchar" MaxLength="100" />
+          <Property Name="CurrentPopulation" Type="int" />
+          <Property Name="5YrsProyectedPopulation" Type="int" />
+          <Property Name="CurrentHouseholds" Type="int" />
+          <Property Name="5YrsProyectedHouseholds" Type="int" />
+          <Property Name="CurrentMediaHouseholdsIncome" Type="money" />
+          <Property Name="5YrsMediaHouseholdsIncome" Type="money" />
+          <Property Name="CurrentAVGHouseholdsIncome" Type="money" />
+          <Property Name="5YrsAVGHouseholdsIncome" Type="money" />
+          <Property Name="CurrentHouseholdsUnder50" Type="int" />
+          <Property Name="5YrsProyectedHouseholdsUnder50" Type="int" />
+          <Property Name="CurrentHouseholds50to100" Type="int" />
+          <Property Name="5YrsProyectedHouseholds50to100" Type="int" />
+          <Property Name="CurrentHouseholdsOver100" Type="int" />
+          <Property Name="5YrsProyectedHouseholdsOver100" Type="int" />
+        </EntityType>
+        <EntityType Name="RetailComparison">
+          <Key>
+            <PropertyRef Name="RetailComparison_id" />
+          </Key>
+          <Property Name="RetailComparison_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Dealer_id" Type="int" Nullable="false" />
+          <Property Name="district" Type="int" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Month" Type="int" Nullable="false" />
+          <Property Name="Whlse_currentMY" Type="int" />
+          <Property Name="Whlse_passMY" Type="int" />
+          <Property Name="Whlse_ChangeYOY" Type="int" />
+          <Property Name="Pct_WhlseYOY" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Whlse_CurrenMonth" Type="int" />
+          <Property Name="RtlSls_currentMY" Type="int" />
+          <Property Name="RtlSls_passMY" Type="int" />
+          <Property Name="RtlSls_ChangeYOY" Type="int" />
+          <Property Name="Pct_RtlSlsYOY" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="RtlSls_CurrenMonth" Type="int" />
+        </EntityType>
+        <EntityType Name="DWT_Dealers">
+          <Key>
+            <PropertyRef Name="DealerId" />
+          </Key>
+          <Property Name="DWT_DealerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="6" />
+          <Property Name="NameShort" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="250" />
+          <Property Name="City" Type="varchar" MaxLength="100" />
+          <Property Name="ZipNumber" Type="varchar" MaxLength="5" />
+          <Property Name="State" Type="varchar" MaxLength="100" />
+          <Property Name="ShippingZone" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+          <Property Name="District" Type="int" />
+          <Property Name="DistrictManager" Type="varchar" MaxLength="100" />
+          <Property Name="RetailLabor" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="WarrantyLabor" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="Website" Type="varchar" MaxLength="100" />
+          <Property Name="DealerId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WareHouseReceipt">
+          <Key>
+            <PropertyRef Name="WareHouseReceipt_id" />
+          </Key>
+          <Property Name="WareHouseReceipt_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateFile" Type="date" Nullable="false" />
+          <Property Name="Activity" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="ItemNumber" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="TotalPrice" Type="money" />
+          <Property Name="SDNNumber" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="PONumber" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="WH" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Picker" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="PageNumber" Type="nchar" MaxLength="50" />
+          <Property Name="count" Type="int" />
+          <Property Name="dateUpdatePrice" Type="date" />
+        </EntityType>
+        <Function Name="spu_warehousePriceUpdate2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="SDCManagementSystem_Test3ModelStoreContainer">
+          <EntitySet Name="AOR" EntityType="Self.AOR" Schema="Marketing" store:Type="Tables" />
+          <EntitySet Name="AORDealerHistory" EntityType="Self.AORDealerHistory" Schema="Marketing" store:Type="Tables" />
+          <EntitySet Name="AORzipCode" EntityType="Self.AORzipCode" Schema="Marketing" store:Type="Tables" />
+          <EntitySet Name="CrossSellDealerAOR" EntityType="Self.CrossSellDealerAOR" Schema="Marketing" store:Type="Tables" />
+          <EntitySet Name="CrossSellZip" EntityType="Self.CrossSellZip" Schema="Marketing" store:Type="Tables" />
+          <EntitySet Name="RetailComparison" EntityType="Self.RetailComparison" Schema="Marketing" store:Type="Tables" />
+          <EntitySet Name="DWT_Dealers" EntityType="Self.DWT_Dealers" Schema="Production" store:Type="Tables" />
+          <EntitySet Name="WareHouseReceipt" EntityType="Self.WareHouseReceipt" Schema="SDCParts" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SDCManagementSystem_Test3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="WareHouseReceipt">
+          <Key>
+            <PropertyRef Name="WareHouseReceipt_id" />
+          </Key>
+          <Property Name="WareHouseReceipt_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateFile" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Activity" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ItemNumber" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="TotalPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SDNNumber" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="PONumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="WH" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Picker" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="PageNumber" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="count" Type="Int32" />
+          <Property Name="dateUpdatePrice" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityContainer Name="SDCManagementSystem_Test3Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="WareHouseReceipts" EntityType="Self.WareHouseReceipt" />
+          <FunctionImport Name="spu_warehousePriceUpdate" ReturnType="Collection(SDCManagementSystem_Test3Model.spu_warehousePriceUpdate_Result)" />
+          <FunctionImport Name="spu_warehousePriceUpdate2" />
+          <EntitySet Name="DWT_Dealers" EntityType="SDCManagementSystem_Test3Model.DWT_Dealers" />
+          <EntitySet Name="CrossSellZips" EntityType="SDCManagementSystem_Test3Model.CrossSellZip" />
+          <EntitySet Name="RetailComparisons" EntityType="SDCManagementSystem_Test3Model.RetailComparison" />
+          <EntitySet Name="AORDealerHistories" EntityType="SDCManagementSystem_Test3Model.AORDealerHistory" />
+          <EntitySet Name="CrossSellDealerAORs" EntityType="SDCManagementSystem_Test3Model.CrossSellDealerAOR" />
+          <EntitySet Name="AORs" EntityType="SDCManagementSystem_Test3Model.AOR" />
+          <EntitySet Name="AORzipCodes" EntityType="SDCManagementSystem_Test3Model.AORzipCode" />
+        </EntityContainer>
+        <ComplexType Name="spu_warehousePriceUpdate_Result">
+          <Property Type="Int32" Name="Column1" Nullable="true" />
+          <Property Type="Int32" Name="Column2" Nullable="true" />
+          <Property Type="Int32" Name="Column3" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="DWT_Dealers">
+          <Key>
+            <PropertyRef Name="DealerId" />
+          </Key>
+          <Property Name="DWT_DealerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="NameShort" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ZipNumber" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ShippingZone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="District" Type="Int32" />
+          <Property Name="DistrictManager" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RetailLabor" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="WarrantyLabor" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="Website" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DealerId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CrossSellZip">
+          <Key>
+            <PropertyRef Name="CrossSellZip_id" />
+          </Key>
+          <Property Name="CrossSellZip_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dealer_id" Type="Int32" Nullable="false" />
+          <Property Name="SalesFrom" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SalesThrough" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SalesinZIP" Type="Int32" />
+          <Property Name="pctTotalSales" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ZIP" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="ZIPName" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="CurrentPopulation" Type="Int32" />
+          <Property Name="C5YrsProyectedPopulation" Type="Int32" />
+          <Property Name="CurrentHouseholds" Type="Int32" />
+          <Property Name="C5YrsProyectedHouseholds" Type="Int32" />
+          <Property Name="CurrentMediaHouseholdsIncome" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="C5YrsMediaHouseholdsIncome" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CurrentAVGHouseholdsIncome" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="C5YrsAVGHouseholdsIncome" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CurrentHouseholdsUnder50" Type="Int32" />
+          <Property Name="C5YrsProyectedHouseholdsUnder50" Type="Int32" />
+          <Property Name="CurrentHouseholds50to100" Type="Int32" />
+          <Property Name="C5YrsProyectedHouseholds50to100" Type="Int32" />
+          <Property Name="CurrentHouseholdsOver100" Type="Int32" />
+          <Property Name="C5YrsProyectedHouseholdsOver100" Type="Int32" />
+        </EntityType>
+        <EntityType Name="RetailComparison">
+          <Key>
+            <PropertyRef Name="RetailComparison_id" />
+          </Key>
+          <Property Name="RetailComparison_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dealer_id" Type="Int32" Nullable="false" />
+          <Property Name="district" Type="Int32" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Month" Type="Int32" Nullable="false" />
+          <Property Name="Whlse_currentMY" Type="Int32" />
+          <Property Name="Whlse_passMY" Type="Int32" />
+          <Property Name="Whlse_ChangeYOY" Type="Int32" />
+          <Property Name="Pct_WhlseYOY" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Whlse_CurrenMonth" Type="Int32" />
+          <Property Name="RtlSls_currentMY" Type="Int32" />
+          <Property Name="RtlSls_passMY" Type="Int32" />
+          <Property Name="RtlSls_ChangeYOY" Type="Int32" />
+          <Property Name="Pct_RtlSlsYOY" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="RtlSls_CurrenMonth" Type="Int32" />
+        </EntityType>
+        <EntityType Name="AORDealerHistory">
+          <Key>
+            <PropertyRef Name="AORDealerHistoryid" />
+          </Key>
+          <Property Name="AORDealerHistoryid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AORName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DealerCode" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="DealerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DealerCity" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ApptDate" Type="DateTime" Precision="0" />
+          <Property Name="TermDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="CrossSellDealerAOR">
+          <Key>
+            <PropertyRef Name="CrossSellDealerAORid" />
+          </Key>
+          <Property Name="CrossSellDealerAORid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AORName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dealer_id" Type="Int32" />
+          <Property Name="SalesFrom" Type="DateTime" Precision="0" />
+          <Property Name="SalesThrough" Type="DateTime" Precision="0" />
+          <Property Name="TotalSales" Type="Int32" />
+          <Property Name="DealerCode" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="DealerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DealerCity" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DealerSaler" Type="Int32" />
+          <Property Name="pctAORSales" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="AOR">
+          <Key>
+            <PropertyRef Name="AORId" />
+          </Key>
+          <Property Name="AORId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dealer_IdResponsable" Type="Int32" Nullable="false" />
+          <Property Name="AORName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CurrentPopulation" Type="Int32" />
+          <Property Name="C5YrsProyectedPopulation" Type="Int32" />
+          <Property Name="CurrentHouseholds" Type="Int32" />
+          <Property Name="C5YrsProyectedHouseholds" Type="Int32" />
+          <Property Name="CurrentHouseholdsUnder50" Type="Int32" />
+          <Property Name="C5YrsProyectedHouseholdsUnder50" Type="Int32" />
+          <Property Name="CurrentHouseholds50to100" Type="Int32" />
+          <Property Name="C5YrsProyectedHouseholds50to100" Type="Int32" />
+          <Property Name="CurrentHouseholdsOver100" Type="Int32" />
+          <Property Name="C5YrsProyectedHouseholdsOver100" Type="Int32" />
+        </EntityType>
+        <EntityType Name="AORzipCode">
+          <Key>
+            <PropertyRef Name="AORzipCode_id" />
+          </Key>
+          <Property Name="AORzipCode_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AORId" Type="Int32" Nullable="false" />
+          <Property Name="ZIPCode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SDCManagementSystem_Test3ModelStoreContainer" CdmEntityContainer="SDCManagementSystem_Test3Entities">
+          <EntitySetMapping Name="WareHouseReceipts">
+            <EntityTypeMapping TypeName="SDCManagementSystem_Test3Model.WareHouseReceipt">
+              <MappingFragment StoreEntitySet="WareHouseReceipt">
+                <ScalarProperty Name="WareHouseReceipt_id" ColumnName="WareHouseReceipt_id" />
+                <ScalarProperty Name="DateFile" ColumnName="DateFile" />
+                <ScalarProperty Name="Activity" ColumnName="Activity" />
+                <ScalarProperty Name="ItemNumber" ColumnName="ItemNumber" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="SDNNumber" ColumnName="SDNNumber" />
+                <ScalarProperty Name="PONumber" ColumnName="PONumber" />
+                <ScalarProperty Name="WH" ColumnName="WH" />
+                <ScalarProperty Name="Picker" ColumnName="Picker" />
+                <ScalarProperty Name="PageNumber" ColumnName="PageNumber" />
+                <ScalarProperty Name="count" ColumnName="count" />
+                <ScalarProperty Name="dateUpdatePrice" ColumnName="dateUpdatePrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spu_warehousePriceUpdate2" FunctionName="SDCManagementSystem_Test3Model.Store.spu_warehousePriceUpdate2" />
+          <EntitySetMapping Name="DWT_Dealers">
+            <EntityTypeMapping TypeName="SDCManagementSystem_Test3Model.DWT_Dealers">
+              <MappingFragment StoreEntitySet="DWT_Dealers">
+                <ScalarProperty Name="DealerId" ColumnName="DealerId" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="WarrantyLabor" ColumnName="WarrantyLabor" />
+                <ScalarProperty Name="RetailLabor" ColumnName="RetailLabor" />
+                <ScalarProperty Name="DistrictManager" ColumnName="DistrictManager" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ShippingZone" ColumnName="ShippingZone" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="ZipNumber" ColumnName="ZipNumber" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="NameShort" ColumnName="NameShort" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="DWT_DealerId" ColumnName="DWT_DealerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CrossSellZips">
+            <EntityTypeMapping TypeName="SDCManagementSystem_Test3Model.CrossSellZip">
+              <MappingFragment StoreEntitySet="CrossSellZip">
+                <ScalarProperty Name="C5YrsProyectedHouseholdsOver100" ColumnName="5YrsProyectedHouseholdsOver100" />
+                <ScalarProperty Name="CurrentHouseholdsOver100" ColumnName="CurrentHouseholdsOver100" />
+                <ScalarProperty Name="C5YrsProyectedHouseholds50to100" ColumnName="5YrsProyectedHouseholds50to100" />
+                <ScalarProperty Name="CurrentHouseholds50to100" ColumnName="CurrentHouseholds50to100" />
+                <ScalarProperty Name="C5YrsProyectedHouseholdsUnder50" ColumnName="5YrsProyectedHouseholdsUnder50" />
+                <ScalarProperty Name="CurrentHouseholdsUnder50" ColumnName="CurrentHouseholdsUnder50" />
+                <ScalarProperty Name="C5YrsAVGHouseholdsIncome" ColumnName="5YrsAVGHouseholdsIncome" />
+                <ScalarProperty Name="CurrentAVGHouseholdsIncome" ColumnName="CurrentAVGHouseholdsIncome" />
+                <ScalarProperty Name="C5YrsMediaHouseholdsIncome" ColumnName="5YrsMediaHouseholdsIncome" />
+                <ScalarProperty Name="CurrentMediaHouseholdsIncome" ColumnName="CurrentMediaHouseholdsIncome" />
+                <ScalarProperty Name="C5YrsProyectedHouseholds" ColumnName="5YrsProyectedHouseholds" />
+                <ScalarProperty Name="CurrentHouseholds" ColumnName="CurrentHouseholds" />
+                <ScalarProperty Name="C5YrsProyectedPopulation" ColumnName="5YrsProyectedPopulation" />
+                <ScalarProperty Name="CurrentPopulation" ColumnName="CurrentPopulation" />
+                <ScalarProperty Name="ZIPName" ColumnName="ZIPName" />
+                <ScalarProperty Name="ZIP" ColumnName="ZIP" />
+                <ScalarProperty Name="pctTotalSales" ColumnName="pctTotalSales" />
+                <ScalarProperty Name="SalesinZIP" ColumnName="SalesinZIP" />
+                <ScalarProperty Name="SalesThrough" ColumnName="SalesThrough" />
+                <ScalarProperty Name="SalesFrom" ColumnName="SalesFrom" />
+                <ScalarProperty Name="dealer_id" ColumnName="dealer_id" />
+                <ScalarProperty Name="CrossSellZip_id" ColumnName="CrossSellZip_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RetailComparisons">
+            <EntityTypeMapping TypeName="SDCManagementSystem_Test3Model.RetailComparison">
+              <MappingFragment StoreEntitySet="RetailComparison">
+                <ScalarProperty Name="RtlSls_CurrenMonth" ColumnName="RtlSls_CurrenMonth" />
+                <ScalarProperty Name="Pct_RtlSlsYOY" ColumnName="Pct_RtlSlsYOY" />
+                <ScalarProperty Name="RtlSls_ChangeYOY" ColumnName="RtlSls_ChangeYOY" />
+                <ScalarProperty Name="RtlSls_passMY" ColumnName="RtlSls_passMY" />
+                <ScalarProperty Name="RtlSls_currentMY" ColumnName="RtlSls_currentMY" />
+                <ScalarProperty Name="Whlse_CurrenMonth" ColumnName="Whlse_CurrenMonth" />
+                <ScalarProperty Name="Pct_WhlseYOY" ColumnName="Pct_WhlseYOY" />
+                <ScalarProperty Name="Whlse_ChangeYOY" ColumnName="Whlse_ChangeYOY" />
+                <ScalarProperty Name="Whlse_passMY" ColumnName="Whlse_passMY" />
+                <ScalarProperty Name="Whlse_currentMY" ColumnName="Whlse_currentMY" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="district" ColumnName="district" />
+                <ScalarProperty Name="Dealer_id" ColumnName="Dealer_id" />
+                <ScalarProperty Name="RetailComparison_id" ColumnName="RetailComparison_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AORDealerHistories">
+            <EntityTypeMapping TypeName="SDCManagementSystem_Test3Model.AORDealerHistory">
+              <MappingFragment StoreEntitySet="AORDealerHistory">
+                <ScalarProperty Name="TermDate" ColumnName="TermDate" />
+                <ScalarProperty Name="ApptDate" ColumnName="ApptDate" />
+                <ScalarProperty Name="DealerCity" ColumnName="DealerCity" />
+                <ScalarProperty Name="DealerName" ColumnName="DealerName" />
+                <ScalarProperty Name="DealerCode" ColumnName="DealerCode" />
+                <ScalarProperty Name="AORName" ColumnName="AORName" />
+                <ScalarProperty Name="AORDealerHistoryid" ColumnName="AORDealerHistoryid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CrossSellDealerAORs">
+            <EntityTypeMapping TypeName="SDCManagementSystem_Test3Model.CrossSellDealerAOR">
+              <MappingFragment StoreEntitySet="CrossSellDealerAOR">
+                <ScalarProperty Name="pctAORSales" ColumnName="pctAORSales" />
+                <ScalarProperty Name="DealerSaler" ColumnName="DealerSaler" />
+                <ScalarProperty Name="DealerCity" ColumnName="DealerCity" />
+                <ScalarProperty Name="DealerName" ColumnName="DealerName" />
+                <ScalarProperty Name="DealerCode" ColumnName="DealerCode" />
+                <ScalarProperty Name="TotalSales" ColumnName="TotalSales" />
+                <ScalarProperty Name="SalesThrough" ColumnName="SalesThrough" />
+                <ScalarProperty Name="SalesFrom" ColumnName="SalesFrom" />
+                <ScalarProperty Name="Dealer_id" ColumnName="Dealer_id" />
+                <ScalarProperty Name="AORName" ColumnName="AORName" />
+                <ScalarProperty Name="CrossSellDealerAORid" ColumnName="CrossSellDealerAORid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AORs">
+            <EntityTypeMapping TypeName="SDCManagementSystem_Test3Model.AOR">
+              <MappingFragment StoreEntitySet="AOR">
+                <ScalarProperty Name="C5YrsProyectedHouseholdsOver100" ColumnName="5YrsProyectedHouseholdsOver100" />
+                <ScalarProperty Name="CurrentHouseholdsOver100" ColumnName="CurrentHouseholdsOver100" />
+                <ScalarProperty Name="C5YrsProyectedHouseholds50to100" ColumnName="5YrsProyectedHouseholds50to100" />
+                <ScalarProperty Name="CurrentHouseholds50to100" ColumnName="CurrentHouseholds50to100" />
+                <ScalarProperty Name="C5YrsProyectedHouseholdsUnder50" ColumnName="5YrsProyectedHouseholdsUnder50" />
+                <ScalarProperty Name="CurrentHouseholdsUnder50" ColumnName="CurrentHouseholdsUnder50" />
+                <ScalarProperty Name="C5YrsProyectedHouseholds" ColumnName="5YrsProyectedHouseholds" />
+                <ScalarProperty Name="CurrentHouseholds" ColumnName="CurrentHouseholds" />
+                <ScalarProperty Name="C5YrsProyectedPopulation" ColumnName="5YrsProyectedPopulation" />
+                <ScalarProperty Name="CurrentPopulation" ColumnName="CurrentPopulation" />
+                <ScalarProperty Name="AORName" ColumnName="AORName" />
+                <ScalarProperty Name="Dealer_IdResponsable" ColumnName="Dealer_IdResponsable" />
+                <ScalarProperty Name="AORId" ColumnName="AORId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AORzipCodes">
+            <EntityTypeMapping TypeName="SDCManagementSystem_Test3Model.AORzipCode">
+              <MappingFragment StoreEntitySet="AORzipCode">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ZIPCode" ColumnName="ZIPCode" />
+                <ScalarProperty Name="AORId" ColumnName="AORId" />
+                <ScalarProperty Name="AORzipCode_id" ColumnName="AORzipCode_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

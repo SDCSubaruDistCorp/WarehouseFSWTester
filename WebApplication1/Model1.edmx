@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SDCManagementSystem_Test3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="SalesGeoInfo">
+          <Key>
+            <PropertyRef Name="SaleId" />
+          </Key>
+          <Property Name="SaleId" Type="int" Nullable="false" />
+          <Property Name="AcceptedDate" Type="date" Nullable="false" />
+          <Property Name="dealerId" Type="int" Nullable="false" />
+          <Property Name="CostumerAddress" Type="varchar" MaxLength="500" />
+          <Property Name="CarLineId" Type="int" Nullable="false" />
+          <Property Name="lat" Type="varchar" MaxLength="20" />
+          <Property Name="lng" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityContainer Name="SDCManagementSystem_Test3ModelStoreContainer">
+          <EntitySet Name="SalesGeoInfo" EntityType="Self.SalesGeoInfo" Schema="Geodata" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SDCManagementSystem_Test3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="SalesGeoInfo">
+          <Key>
+            <PropertyRef Name="SaleId" />
+          </Key>
+          <Property Name="SaleId" Type="Int32" Nullable="false" />
+          <Property Name="AcceptedDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="dealerId" Type="Int32" Nullable="false" />
+          <Property Name="CostumerAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CarLineId" Type="Int32" Nullable="false" />
+          <Property Name="lat" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="lng" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="SDCManagementSystem_Test3Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="SalesGeoInfoes" EntityType="Self.SalesGeoInfo" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SDCManagementSystem_Test3ModelStoreContainer" CdmEntityContainer="SDCManagementSystem_Test3Entities">
+          <EntitySetMapping Name="SalesGeoInfoes">
+            <EntityTypeMapping TypeName="SDCManagementSystem_Test3Model.SalesGeoInfo">
+              <MappingFragment StoreEntitySet="SalesGeoInfo">
+                <ScalarProperty Name="SaleId" ColumnName="SaleId" />
+                <ScalarProperty Name="AcceptedDate" ColumnName="AcceptedDate" />
+                <ScalarProperty Name="dealerId" ColumnName="dealerId" />
+                <ScalarProperty Name="CostumerAddress" ColumnName="CostumerAddress" />
+                <ScalarProperty Name="CarLineId" ColumnName="CarLineId" />
+                <ScalarProperty Name="lat" ColumnName="lat" />
+                <ScalarProperty Name="lng" ColumnName="lng" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
