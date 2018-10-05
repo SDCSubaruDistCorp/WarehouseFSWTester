@@ -68,8 +68,14 @@ namespace WarehouseFSWTester
                         foundIndexes.Add(i);
                     }
 
-                    month = e.Name.Substring(0, foundIndexes[0]);
-                    day = e.Name.Substring(foundIndexes[0] + 1, foundIndexes[1] - 2);
+                    string[] info = e.Name.Split('-');
+
+                    //month = e.Name.Substring(0, foundIndexes[0]);
+                    month = info[0];
+
+                    //day = e.Name.Substring(foundIndexes[0] + 1, foundIndexes[1] - 2);
+                    day = info[1];
+
                     WareHouseReceiptFiles.SafePDF(year, month, day);
                     
                 }
