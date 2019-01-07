@@ -216,7 +216,6 @@ namespace WarehouseFSWTester
         }
         public static void SafePDF(string y, string m, string d)
         {
-          //string URL = "http://sdc-sql2012b/reportserver?/RP/RPWHprices&rs:Command=Render&rs:Format=PDF";
 
             string URL = "http://sdc-qa/reportserver?/Prod/RP/RPWHprices&rs:Command=Render&rs:Format=PDF";
             //We can get values of these parameters from Request object.
