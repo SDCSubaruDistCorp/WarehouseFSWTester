@@ -164,7 +164,7 @@ namespace WarehouseFSWTester
             {
                 try
                 {
-                   
+                    db.Database.CommandTimeout = 120;
                     db.spu_warehousePriceUpdate2();
                     db.SaveChanges();
                 }
